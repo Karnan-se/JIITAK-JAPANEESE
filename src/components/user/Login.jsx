@@ -5,13 +5,16 @@ import { toast } from "sonner"
 import { Eye, EyeOff } from "lucide-react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
+import { useDispatch } from "react-redux"
+import { setAdminCredentials } from "../../features/authSlice"
 
 const LoginForm = ({ adminLogin }) => {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  // Validation schema
+  
   const validationSchema = Yup.object({
     email: Yup.string().email("有効なメールアドレスを入力してください").required("メールアドレスは必須です"),
     password: Yup.string().min(8, "パスワードは8文字以上である必要があります").required("パスワードは必須です"),
@@ -25,12 +28,13 @@ const LoginForm = ({ adminLogin }) => {
 
     try {
       
-      await adminLogin(email, password)
-
-      
-      if (email === "admin@example.com" && password === "password") {
+     const response =  await adminLogin(email, password)
+     dispatch(setAdminCredentials(response))
+     
+      if (response) {
+        
         toast.success("ログインに成功しました。")
-        navigate("/dashboard")
+        navigate("/admin")
       } else {
         toast.error("メールアドレスまたはパスワードが正しくありません。")
       }

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import AdminHeader from "./Header"
 import AdminAside from "./Aside"
-import MainChartOne from "./MainChart"
+
 import { Outlet } from "react-router-dom"
 
 const AdminDashboard = () => {

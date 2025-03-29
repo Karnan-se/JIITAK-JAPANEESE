@@ -11,7 +11,7 @@ export default  function AdminAside(){
         <ul className="space-y-2">
           <li>
             <NavLink
-              to="/"
+              to="." end
               className={({ isActive }) =>
                 `flex items-center px-4 py-3 ${
                   isActive ? "bg-white border-l-4 border-orange-500 text-orange-500 shadow-sm" : "text-gray-700 hover:bg-white"
@@ -25,7 +25,7 @@ export default  function AdminAside(){
 
           <li>
             <NavLink
-              to="/login/user"
+              to="user"
               className={({ isActive }) =>
                 `flex items-center px-4 py-3 ${
                   isActive ? "bg-white border-l-4 border-orange-500 text-orange-500 shadow-sm" : "text-gray-700 hover:bg-white"

@@ -21,7 +21,6 @@ A comprehensive admin dashboard for the ルックミール (Look Meal) platform,
 - **User Listing** with filtering, sorting, and pagination
 
 ### Email Functionality
--
 - **Password Reset Emails** with secure tokens stored in the dataBase
 
 ### UI/UX

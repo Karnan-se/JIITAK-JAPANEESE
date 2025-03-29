@@ -7,12 +7,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { useDispatch } from "react-redux"
 import { setAdminCredentials } from "../../features/authSlice"
+import { Link } from "react-router-dom"
 
 const LoginForm = ({ adminLogin }) => {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  
 
   
   const validationSchema = Yup.object({
@@ -27,14 +30,15 @@ const LoginForm = ({ adminLogin }) => {
     setSubmitting(true)
 
     try {
+      console.log(email, password)
       
      const response =  await adminLogin(email, password)
-     dispatch(setAdminCredentials(response))
+    //  dispatch(setAdminCredentials(response))
      
       if (response) {
         
         toast.success("ログインに成功しました。")
-        navigate("/admin")
+        
       } else {
         toast.error("メールアドレスまたはパスワードが正しくありません。")
       }
@@ -108,11 +112,11 @@ const LoginForm = ({ adminLogin }) => {
               {loading || isSubmitting ? "ログイン中..." : "ログイン"}
             </button>
 
-            <div className="text-center mt-6">
-              <a href="#" className="text-[#2b1d0e] hover:underline text-sm">
+            <Link to={"/forgotpassword"} className="text-center mt-6">
+              <p href="#" className="text-[#2b1d0e] hover:underline text-sm">
                 パスワードをお忘れの場合
-              </a>
-            </div>
+              </p>
+            </Link>
           </Form>
         )}
       </Formik>

@@ -1,177 +1,198 @@
 
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Search } from "lucide-react"
+import { getUserData } from "../../features/api/getUserData"
 
 const UserTable = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [hoveredEmail, setHoveredEmail] = useState(null)
   const [hoveredPosition, setHoveredPosition] = useState({ x: 0, y: 0 })
   const [searchTerm, setSearchTerm] = useState("")
+  const[allUsers , setUsers] = useState([])
 
-  // Sample user data without IDs
-  const allUsers = [
-    {
-      nickname: "ゆうと",
-      email: "example1@example.com",
-      birthDate: "1992年 12月",
-      gender: "男性",
-      location: "東京都",
-      registrationDate: "2024年 01月 12日",
-    },
-    {
-      nickname: "ニックネーム最大12文字",
-      email: "user234@example.net",
-      birthDate: "1987年 5月",
-      gender: "女性",
-      location: "東京都",
-      registrationDate: "2024年 01月 12日",
-    },
-    {
-      nickname: "わんこ好き",
-      email: "test_user@gmail.com",
-      birthDate: "1996年 10月",
-      gender: "男性",
-      location: "東京都",
-      registrationDate: "2024年 01月 12日",
-    },
-    {
-      nickname: "はるかぜ",
-      email: "dummy_email_567@yahoo.co.jp",
-      birthDate: "1998年 2月",
-      gender: "男性",
-      location: "静岡県",
-      registrationDate: "2024年 01月 12日",
-    },
-    {
-      nickname: "あおい",
-      email: "ecampleaddress124e23@outlook.co.jp",
-      birthDate: "1978年 5月",
-      gender: "女性",
-      location: "埼玉県",
-      registrationDate: "2024年 01月 11日",
-    },
-    {
-      nickname: "ポンたろう",
-      email: "random.user@example.org",
-      birthDate: "1978年 6月",
-      gender: "女性",
-      location: "栃木県",
-      registrationDate: "2024年 01月 11日",
-    },
-    {
-      nickname: "まさやん",
-      email: "email1234@example.co.jp",
-      birthDate: "1972年 8月",
-      gender: "回答しない",
-      location: "鹿児島県",
-      registrationDate: "2024年 01月 11日",
-    },
-    {
-      nickname: "なつこ",
-      email: "user_test456@gmail.com",
-      birthDate: "1969年 11月",
-      gender: "回答しない",
-      location: "茨城県",
-      registrationDate: "2024年 01月 11日",
-    },
-    {
-      nickname: "ぴょんぴょん",
-      email: "example_email@yahoo.com",
-      birthDate: "1984年 4月",
-      gender: "女性",
-      location: "東京都",
-      registrationDate: "2024年 01月 10日",
-    },
-    {
-      nickname: "ひまわりさん",
-      email: "dummy.address@example.net",
-      birthDate: "1988年 4月",
-      gender: "その他",
-      location: "福岡",
-      registrationDate: "2024年 01月 10日",
-    },
-    {
-      nickname: "たなか",
-      email: "tanaka@example.jp",
-      birthDate: "1990年 7月",
-      gender: "男性",
-      location: "大阪府",
-      registrationDate: "2024年 01月 10日",
-    },
-    {
-      nickname: "さくら",
-      email: "sakura@example.com",
-      birthDate: "1995年 3月",
-      gender: "女性",
-      location: "京都府",
-      registrationDate: "2024年 01月 09日",
-    },
-    {
-      nickname: "やまだ",
-      email: "yamada@example.net",
-      birthDate: "1982年 9月",
-      gender: "男性",
-      location: "北海道",
-      registrationDate: "2024年 01月 09日",
-    },
-    {
-      nickname: "すずき",
-      email: "suzuki@example.org",
-      birthDate: "1975年 11月",
-      gender: "女性",
-      location: "沖縄県",
-      registrationDate: "2024年 01月 09日",
-    },
-    {
-      nickname: "たろう",
-      email: "taro@example.co.jp",
-      birthDate: "1993年 6月",
-      gender: "男性",
-      location: "愛知県",
-      registrationDate: "2024年 01月 08日",
-    },
-    {
-      nickname: "はなこ",
-      email: "hanako@example.jp",
-      birthDate: "1989年 4月",
-      gender: "女性",
-      location: "広島県",
-      registrationDate: "2024年 01月 08日",
-    },
-    {
-      nickname: "けんじ",
-      email: "kenji@example.com",
-      birthDate: "1980年 2月",
-      gender: "男性",
-      location: "福岡県",
-      registrationDate: "2024年 01月 08日",
-    },
-    {
-      nickname: "あきこ",
-      email: "akiko@example.net",
-      birthDate: "1986年 8月",
-      gender: "女性",
-      location: "宮城県",
-      registrationDate: "2024年 01月 07日",
-    },
-    {
-      nickname: "しょうた",
-      email: "shota@example.org",
-      birthDate: "1997年 5月",
-      gender: "男性",
-      location: "神奈川県",
-      registrationDate: "2024年 01月 07日",
-    },
-    {
-      nickname: "みどり",
-      email: "midori@example.co.jp",
-      birthDate: "1991年 9月",
-      gender: "女性",
-      location: "千葉県",
-      registrationDate: "2024年 01月 07日",
-    },
-    // Add more users to make pagination meaningful
-  ]
+  useEffect(()=>{
+    console.log("calleonh wbfjh32 f jhdbkjed 3ihdcnoqewf qbiq3ed ")
+    
+     const fetchUserData = async()=>{
+      
+      const userData = await getUserData()
+      console.log(userData , "userData")
+      setUsers(userData)
+    }
+    fetchUserData()
+
+  },[])
+
+
+
+  // const allUsers = [
+  //   {
+  //     nickname: "ゆうと",
+  //     email: "example1@example.com",
+  //     birthDate: "1992年 12月",
+  //     gender: "男性",
+  //     location: "東京都",
+  //     registrationDate: "2024年 01月 12日",
+  //   },
+  //   {
+  //     nickname: "ニックネーム最大12文字",
+  //     email: "user234@example.net",
+  //     birthDate: "1987年 5月",
+  //     gender: "女性",
+  //     location: "東京都",
+  //     registrationDate: "2024年 01月 12日",
+  //   },
+  //   {
+  //     nickname: "わんこ好き",
+  //     email: "test_user@gmail.com",
+  //     birthDate: "1996年 10月",
+  //     gender: "男性",
+  //     location: "東京都",
+  //     registrationDate: "2024年 01月 12日",
+  //   },
+  //   {
+  //     nickname: "はるかぜ",
+  //     email: "dummy_email_567@yahoo.co.jp",
+  //     birthDate: "1998年 2月",
+  //     gender: "男性",
+  //     location: "静岡県",
+  //     registrationDate: "2024年 01月 12日",
+  //   },
+  //   {
+  //     nickname: "あおい",
+  //     email: "ecampleaddress124e23@outlook.co.jp",
+  //     birthDate: "1978年 5月",
+  //     gender: "女性",
+  //     location: "埼玉県",
+  //     registrationDate: "2024年 01月 11日",
+  //   },
+  //   {
+  //     nickname: "ポンたろう",
+  //     email: "random.user@example.org",
+  //     birthDate: "1978年 6月",
+  //     gender: "女性",
+  //     location: "栃木県",
+  //     registrationDate: "2024年 01月 11日",
+  //   },
+  //   {
+  //     nickname: "まさやん",
+  //     email: "email1234@example.co.jp",
+  //     birthDate: "1972年 8月",
+  //     gender: "回答しない",
+  //     location: "鹿児島県",
+  //     registrationDate: "2024年 01月 11日",
+  //   },
+  //   {
+  //     nickname: "なつこ",
+  //     email: "user_test456@gmail.com",
+  //     birthDate: "1969年 11月",
+  //     gender: "回答しない",
+  //     location: "茨城県",
+  //     registrationDate: "2024年 01月 11日",
+  //   },
+  //   {
+  //     nickname: "ぴょんぴょん",
+  //     email: "example_email@yahoo.com",
+  //     birthDate: "1984年 4月",
+  //     gender: "女性",
+  //     location: "東京都",
+  //     registrationDate: "2024年 01月 10日",
+  //   },
+  //   {
+  //     nickname: "ひまわりさん",
+  //     email: "dummy.address@example.net",
+  //     birthDate: "1988年 4月",
+  //     gender: "その他",
+  //     location: "福岡",
+  //     registrationDate: "2024年 01月 10日",
+  //   },
+  //   {
+  //     nickname: "たなか",
+  //     email: "tanaka@example.jp",
+  //     birthDate: "1990年 7月",
+  //     gender: "男性",
+  //     location: "大阪府",
+  //     registrationDate: "2024年 01月 10日",
+  //   },
+  //   {
+  //     nickname: "さくら",
+  //     email: "sakura@example.com",
+  //     birthDate: "1995年 3月",
+  //     gender: "女性",
+  //     location: "京都府",
+  //     registrationDate: "2024年 01月 09日",
+  //   },
+  //   {
+  //     nickname: "やまだ",
+  //     email: "yamada@example.net",
+  //     birthDate: "1982年 9月",
+  //     gender: "男性",
+  //     location: "北海道",
+  //     registrationDate: "2024年 01月 09日",
+  //   },
+  //   {
+  //     nickname: "すずき",
+  //     email: "suzuki@example.org",
+  //     birthDate: "1975年 11月",
+  //     gender: "女性",
+  //     location: "沖縄県",
+  //     registrationDate: "2024年 01月 09日",
+  //   },
+  //   {
+  //     nickname: "たろう",
+  //     email: "taro@example.co.jp",
+  //     birthDate: "1993年 6月",
+  //     gender: "男性",
+  //     location: "愛知県",
+  //     registrationDate: "2024年 01月 08日",
+  //   },
+  //   {
+  //     nickname: "はなこ",
+  //     email: "hanako@example.jp",
+  //     birthDate: "1989年 4月",
+  //     gender: "女性",
+  //     location: "広島県",
+  //     registrationDate: "2024年 01月 08日",
+  //   },
+  //   {
+  //     nickname: "けんじ",
+  //     email: "kenji@example.com",
+  //     birthDate: "1980年 2月",
+  //     gender: "男性",
+  //     location: "福岡県",
+  //     registrationDate: "2024年 01月 08日",
+  //   },
+  //   {
+  //     nickname: "あきこ",
+  //     email: "akiko@example.net",
+  //     birthDate: "1986年 8月",
+  //     gender: "女性",
+  //     location: "宮城県",
+  //     registrationDate: "2024年 01月 07日",
+  //   },
+  //   {
+  //     nickname: "しょうた",
+  //     email: "shota@example.org",
+  //     birthDate: "1997年 5月",
+  //     gender: "男性",
+  //     location: "神奈川県",
+  //     registrationDate: "2024年 01月 07日",
+  //   },
+  //   {
+  //     nickname: "みどり",
+  //     email: "midori@example.co.jp",
+  //     birthDate: "1991年 9月",
+  //     gender: "女性",
+  //     location: "千葉県",
+  //     registrationDate: "2024年 01月 07日",
+  //   },
+  //   // Add more users to make pagination meaningful
+  // ]
+
+
+
+
+  
 
   // Search functionality
   const filteredUsers = allUsers.filter(

@@ -78,7 +78,3 @@ This approach ensures that the user listing and analytics display authentic data
 
 ### Setup
 
-1. Clone the repository
-```bash
-git clone https://github.com/yourusername/lookmeal-admin.git
-cd lookmeal-admin

@@ -19,11 +19,14 @@ const LoginForm = ({ adminLogin }) => {
 
   
   const validationSchema = Yup.object({
+    
+    
     email: Yup.string().email("有効なメールアドレスを入力してください").required("メールアドレスは必須です"),
     password: Yup.string().min(8, "パスワードは8文字以上である必要があります").required("パスワードは必須です"),
   })
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    
     const { email, password } = values
 
     setLoading(true)
@@ -54,7 +57,7 @@ const LoginForm = ({ adminLogin }) => {
     <div className="flex flex-col items-center justify-center px-4 py-12">
       <h1 className="text-3xl font-bold text-[#2b1d0e] mb-12">ログイン</h1>
 
-      <Formik initialValues={{ email: "", password: "" }} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik initialValues={{ email: "karnan.se@gmail.com", password: "Karnanis2@" }} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ isSubmitting, values, handleChange, touched, errors }) => (
           <Form className="w-full max-w-md">
             <div className="mb-6">

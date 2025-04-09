@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AdminProtectedRoute from '../../../project/src/Features/adminProtectedRoute';
+import AdminProtectedRoute from '../features/protectedRoutes/adminProtectedRoutes';
 import AdminLogin from '../pages/AdminLogin';
 import AdminDashboard from '../components/admin/dashboard';
 import MainChartOne from '../components/admin/MainChart';
